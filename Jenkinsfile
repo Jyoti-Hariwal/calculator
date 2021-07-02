@@ -22,10 +22,10 @@ pipeline {
                 
                 if [[ $GIT_BRANCH == "deve" ]]
                 then
-                    kubectl set image deployment/aes-app httpd=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n $BRANCH_NAME
+                    kubectl set image deployment/jyoti nginx=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n $BRANCH_NAME
                 elif [[ $GIT_BRANCH == "master" ]]
                 then
-                    kubectl set image deployment/aes-app httpd=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n master
+                    kubectl set image deployment/jyoti nginx=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n master
                 fi         
             '''
       }
