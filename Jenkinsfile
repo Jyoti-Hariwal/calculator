@@ -1,8 +1,8 @@
 pipeline {
   environment {
-    registry = "riteshk0398/calculator"
+    registry = "Jyoti-Hariwal/calculator"
     registryCredential = 'dockerhub'
-    KUBECONFIG="$JENKINS_HOME/.kube/config2"
+    KUBECONFIG="$JENKINS_HOME/.kube/config1"
   }
   agent any
   stages {
@@ -20,12 +20,12 @@ pipeline {
     
         sh  '''#!/bin/bash
                 
-                if [[ $GIT_BRANCH == "development" ]]
+                if [[ $GIT_BRANCH == "deve" ]]
                 then
-                    kubectl set image deployment/aes-app httpd=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n $BRANCH_NAME
+                    kubectl set image deployment/jyoti nginx=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n $BRANCH_NAME
                 elif [[ $GIT_BRANCH == "master" ]]
                 then
-                    kubectl set image deployment/aes-app httpd=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n production
+                    kubectl set image deployment/jyoti nginx=jyoti26/calculator:$BUILD_ID-$BRANCH_NAME -n master
                 fi         
             '''
       }
